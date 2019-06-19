@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include "subthread.h"
-#include "test.h"
 namespace Ui {
 class MainWindow;
 }
@@ -23,13 +22,13 @@ public slots:
 
     void on_pushButton_2_clicked();
     void button1OK();
-    void button2OK();
+    void button2OK(TData data);
     void dealProgressBar(int);
 private:
     Ui::MainWindow *ui;
     QThread* thread;
     SubThread* subthread;
-    test myth;
+    TData savedata;
 };
 
 #endif // MAINWINDOW_H

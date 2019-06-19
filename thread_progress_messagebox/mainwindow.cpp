@@ -1,20 +1,21 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+extern bool loopFlag;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->pushButton_2->setEnabled(false);
-    thread = new QThread;
+    thread = new QThread(this);
 
 }
 
 MainWindow::~MainWindow()
 {
-    thread->quit();
-    thread->wait();
+//    thread->quit();
+//    thread->wait();
     delete ui;
 }
 
@@ -25,6 +26,7 @@ void MainWindow::on_pushButton_clicked()
                              QMessageBox::Ok);
         return;
     }
+    loopFlag = true;
     subthread = new SubThread;
     subthread->moveToThread(thread);
     connect(subthread,&SubThread::slol1EndSignal,thread,&QThread::quit);
@@ -55,10 +57,13 @@ void MainWindow::on_pushButton_2_clicked()
 }
 
 void MainWindow::button1OK(){
-    ui->pushButton_2->setEnabled(true);
+    //ui->pushButton_2->setEnabled(true);
+    qDebug() << "finished";
 }
 
-void MainWindow::button2OK(){
+void MainWindow::button2OK(TData data){
+    savedata = data;
+    qDebug() << savedata.id;
     qDebug() << "finished";
 }
 void MainWindow::dealProgressBar(int num){
