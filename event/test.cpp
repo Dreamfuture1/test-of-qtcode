@@ -6,7 +6,8 @@ Test::Test(QWidget *parent) :
     ui(new Ui::Test)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::WindowTitleHint);
+    setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | \
+                   Qt::WindowMinimizeButtonHint);
     setFixedSize(this->width(),this->height());
 }
 
