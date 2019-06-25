@@ -21,7 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,&MainWindow::windowClose,&te,&Test::closeSlot);
     connect(this,&MainWindow::currentSize,&te,&Test::resizeSlot);
     te.show();
+<<<<<<< HEAD
+=======
     //showMinimized();
+>>>>>>> temp
 
 }
 
@@ -36,7 +39,13 @@ void MainWindow::paintEvent(QPaintEvent *e){
 
 void MainWindow::moveEvent(QMoveEvent *e){
 
+<<<<<<< HEAD
     int wd = width();
+=======
+    int wd = frameGeometry().width();
+    qDebug() << "width:" << width();
+    qDebug() << "main" << pos() << "wd" << wd;
+>>>>>>> temp
     emit windowMove(pos(),wd);
     QMainWindow::moveEvent(e);
     return;

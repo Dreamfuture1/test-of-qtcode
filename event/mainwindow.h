@@ -28,7 +28,7 @@ protected:
     void moveEvent(QMoveEvent *event);
     void closeEvent(QCloseEvent *event);
     void resizeEvent(QResizeEvent *event);
-    void changeEvent(QEvent *e);
+    //void changeEvent(QEvent *e);
     //bool event(QEvent *event);
 signals:
     void windowMove(QPoint,int);
