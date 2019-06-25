@@ -24,7 +24,6 @@ void Test::moveslot(QPoint data,int wd){
         po.setX(data.x() + wd);
         po.setY(data.y());
     }
-    qDebug() << "sub" << pos() << "wd:" << wd;
     move(po);
 }
 

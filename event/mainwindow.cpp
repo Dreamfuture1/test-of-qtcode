@@ -37,8 +37,6 @@ void MainWindow::paintEvent(QPaintEvent *e){
 void MainWindow::moveEvent(QMoveEvent *e){
 
     int wd = width();
-    qDebug() << "width:" << width();
-    qDebug() << "main" << pos() << "wd" << wd;
     emit windowMove(pos(),wd);
     QMainWindow::moveEvent(e);
     return;
