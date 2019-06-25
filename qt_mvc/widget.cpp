@@ -13,7 +13,8 @@ Widget::Widget(QWidget *parent) :
     mydelegate = new MyDelegate(this);
     //ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setModel(mymode);
-    ui->tableView->setItemDelegateForColumn(0,mydelegate);
+    //ui->tableView->setItemDelegateForColumn(0,mydelegate);
+    ui->tableView->setItemDelegate(mydelegate);
 }
 
 Widget::~Widget()
