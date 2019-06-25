@@ -27,12 +27,16 @@ SOURCES += \
         main.cpp \
         widget.cpp \
     mymodel.cpp \
-    mydelegate.cpp
+    mydelegate.cpp \
+    datastore.cpp \
+    mymodelsub.cpp
 
 HEADERS += \
         widget.h \
     mymodel.h \
-    mydelegate.h
+    mydelegate.h \
+    datastore.h \
+    mymodelsub.h
 
 FORMS += \
         widget.ui

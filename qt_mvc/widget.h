@@ -3,7 +3,9 @@
 
 #include <QWidget>
 #include "mymodel.h"
+#include "mymodelsub.h"
 #include "mydelegate.h"
+#include "datastore.h"
 namespace Ui {
 class Widget;
 }
@@ -15,7 +17,7 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
-
+    void initData();
 private slots:
     void on_pushButton_clicked();
     
@@ -25,10 +27,14 @@ private slots:
 
 private:
     Ui::Widget *ui;
+
+    DataStore mainData;
+
     MyModel* mymode;
     MyDelegate* mydelegate;
-    MyModel* mymode2;
+    MyModelSub* mymode2;
     MyDelegate* mydelegate2;
+    TableModel* model;
 };
 
 #endif // WIDGET_H

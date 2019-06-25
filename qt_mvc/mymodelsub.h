@@ -1,5 +1,5 @@
-#ifndef MYMODEL_H
-#define MYMODEL_H
+#ifndef MyModelSub_H
+#define MyModelSub_H
 #include "datastore.h"
 
 #include <QAbstractTableModel>
@@ -7,26 +7,12 @@
 #include <QStringList>
 #include <QVector>
 
-class TableModel:public QAbstractTableModel
+
+class MyModelSub : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    explicit TableModel(QObject *parent = nullptr);
-    //重写函数
-    int rowCount(const QModelIndex &) const;
-    int columnCount(const QModelIndex &) const;
-    QVariant data(const QModelIndex &, int) const;
-
-    Qt::ItemFlags flags(const QModelIndex &) const;
-    bool setData(const QModelIndex &, const QVariant &, int);
-};
-
-
-class MyModel : public QAbstractTableModel
-{
-    Q_OBJECT
-public:
-    explicit MyModel(QObject *parent = nullptr);
+    explicit MyModelSub(QObject *parent = nullptr);
     //重写函数
     int rowCount(const QModelIndex &parent) const;//重写返回行
     int columnCount(const QModelIndex &parent) const;
@@ -42,10 +28,10 @@ signals:
 
 public slots:
 public:
-    void initData(DataStore* data);
+    void initData(Data* data);
 private:
-    DataStore* dataSave;
+    Data* dataSave;
     QStringList headH;
 };
 
-#endif // MYMODEL_H
+#endif // MyModelSub_H
