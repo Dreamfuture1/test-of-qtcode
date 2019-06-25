@@ -19,7 +19,7 @@ void MyModel::initData(QString name,QString phone,QString date){
     dataSave.push_back(temp);
 }
 void MyModel::changed(QModelIndex index1,QModelIndex index2){
-    //showData();
+    showData();
 }
 void MyModel::showData(){
     int row = dataSave.size();
@@ -80,9 +80,9 @@ Qt::ItemFlags MyModel::flags(const QModelIndex &index) const{
     if(!index.isValid()){//如果模型的索引无效
         return 0;
     }
-//    if(index.column() == 1){
-//        return  Qt::ItemIsEnabled | Qt::ItemIsSelectable;
-//    }
+    if(index.column() == 1){
+        return  Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    }
     return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
 }
 bool MyModel::setData(const QModelIndex &index, \

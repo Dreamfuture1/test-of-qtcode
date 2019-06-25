@@ -21,10 +21,14 @@ private slots:
     
     void on_pushButton_2_clicked();
 
+    void on_tableView_clicked(const QModelIndex &index);
+
 private:
     Ui::Widget *ui;
     MyModel* mymode;
     MyDelegate* mydelegate;
+    MyModel* mymode2;
+    MyDelegate* mydelegate2;
 };
 
 #endif // WIDGET_H

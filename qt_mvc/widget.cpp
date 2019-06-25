@@ -13,8 +13,8 @@ Widget::Widget(QWidget *parent) :
     mydelegate = new MyDelegate(this);
     //ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setModel(mymode);
-    //ui->tableView->setItemDelegateForColumn(0,mydelegate);
-    ui->tableView->setItemDelegate(mydelegate);
+    ui->tableView->setItemDelegateForColumn(0,mydelegate);
+
 }
 
 Widget::~Widget()
@@ -50,4 +50,18 @@ void Widget::on_pushButton_2_clicked()
     mymode->removeRows(selected.row(),1);
 
 
+}
+
+void Widget::on_tableView_clicked(const QModelIndex &index)
+{
+//    delete mymode2;
+//    delete mydelegate2;
+    if(index.row() == 1){
+        mymode2 = new MyModel;
+        mydelegate2 = new MyDelegate;
+        ui->tableView2->setModel(mymode2);
+        ui->tableView2->setItemDelegateForColumn(0,mydelegate2);
+        return;
+    }
+    mymode2
 }
