@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setFixedSize(500,500);
+    //setFixedSize(500,500);
     QDesktopWidget* desk = QApplication::desktop();
     QRect rec = desk->availableGeometry();
     QPoint po = rec.center();
@@ -21,6 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,&MainWindow::windowClose,&te,&Test::closeSlot);
     connect(this,&MainWindow::currentSize,&te,&Test::resizeSlot);
     te.show();
+<<<<<<< HEAD
+=======
+    //showMinimized();
+>>>>>>> temp
 
 }
 
@@ -50,5 +54,20 @@ void MainWindow::closeEvent(QCloseEvent *event){
 void MainWindow::resizeEvent(QResizeEvent *event){
     emit currentSize(event->size());
     QMainWindow::resizeEvent(event);
+    return;
+}
+void MainWindow::changeEvent(QEvent *e){
+
+    if(e->type() == QEvent::WindowStateChange){
+        if(this->windowState() == Qt::WindowMaximized){
+            qDebug() << "max";
+            return;
+        }
+        if(this->windowState() == Qt::WindowMinimized){
+            qDebug() << "min";
+            return;
+        }
+    }
+    QMainWindow::changeEvent(e);
     return;
 }

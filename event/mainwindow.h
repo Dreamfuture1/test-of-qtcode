@@ -34,6 +34,8 @@ signals:
     void windowMove(QPoint,int);
     void currentSize(QSize);
     void windowClose();
+    void windowMax();
+    void windowMin();
 private:
     Ui::MainWindow *ui;
     Test te;
