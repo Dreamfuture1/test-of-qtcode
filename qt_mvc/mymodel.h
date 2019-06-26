@@ -12,7 +12,7 @@ class TableModel:public QAbstractTableModel
     Q_OBJECT
 public:
     explicit TableModel(QObject *parent = nullptr);
-    //é‡å†™å‡½æ•°
+    //ÖØĞ´º¯Êı
     int rowCount(const QModelIndex &) const;
     int columnCount(const QModelIndex &) const;
     QVariant data(const QModelIndex &, int) const;
@@ -27,8 +27,8 @@ class MyModel : public QAbstractTableModel
     Q_OBJECT
 public:
     explicit MyModel(QObject *parent = nullptr);
-    //é‡å†™å‡½æ•°
-    int rowCount(const QModelIndex &parent) const;//é‡å†™è¿”å›è¡Œ
+    //ÖØĞ´º¯Êı
+    int rowCount(const QModelIndex &parent) const;//ÖØĞ´·µ»ØĞĞ
     int columnCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;

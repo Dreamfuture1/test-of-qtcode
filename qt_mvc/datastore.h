@@ -36,6 +36,7 @@ class DataStore
 {
 public:
     DataStore();
+    void eachData();
 
 public:
     QVector<Data> data;

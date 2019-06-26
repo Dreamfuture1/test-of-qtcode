@@ -12,28 +12,28 @@ MyDelegate::MyDelegate(QObject *parent) : QItemDelegate(parent)
 
 void MyDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, \
                         const QModelIndex &index) const{
-    QRect rect = option.rect; // ç›®æ ‡çŸ©å½¢
-    rect.adjust(2, 2, -2, -2); // ç¼©å°ä¸€åœˆï¼Œç•™å‡ºç©ºç™½é—´éš”
+    QRect rect = option.rect; // Ä¿±ê¾ØĞÎ
+    rect.adjust(2, 2, -2, -2); // ËõĞ¡Ò»È¦£¬Áô³ö¿Õ°×¼ä¸ô
     //rect.adjust(0, 0, 0, 0);
     bool selected = false;
-    //stateçš„é»˜è®¤å€¼ä¸º QStyle::State_None.
-    //é€‰ä¸­æ—¶è®¾ç½®ç”»ç¬”å’Œç”»åˆ·ï¼Œæ¥ç»˜åˆ¶é€‰ä¸­çš„itemçš„å½¢çŠ¶å’Œé¢œè‰²
+    //stateµÄÄ¬ÈÏÖµÎª QStyle::State_None.
+    //Ñ¡ÖĞÊ±ÉèÖÃ»­±ÊºÍ»­Ë¢£¬À´»æÖÆÑ¡ÖĞµÄitemµÄĞÎ×´ºÍÑÕÉ«
     if (option.state & QStyle::State_Selected){
        selected = true;
-       //painter->setPen(Qt::DotLine);//å®šä¹‰äº†å¦‚ä½•ç»˜åˆ¶çº¿æ¡å’Œè½®å»“
+       //painter->setPen(Qt::DotLine);//¶¨ÒåÁËÈçºÎ»æÖÆÏßÌõºÍÂÖÀª
        painter->setPen(QColor(120, 88,140));
-       //è®¾ç½®ç”»ç¬”çš„å¡«å……ï¼Œé¢œè‰²ï¼Œä»¥åŠç«–çŠ¶å¡«å……ï¼Œé»˜è®¤çš„æ˜¯å…¨éƒ¨å¡«å……
+       //ÉèÖÃ»­±ÊµÄÌî³ä£¬ÑÕÉ«£¬ÒÔ¼°Êú×´Ìî³ä£¬Ä¬ÈÏµÄÊÇÈ«²¿Ìî³ä
        QBrush brush = QBrush(QColor(120, 88,140));
        //painter->setBrush(Qt::SolidPattern);
        //painter->setBrush(QColor(120, 88,140));
        painter->setBrush(brush);
 
-       painter->drawRoundedRect(rect, 2, 2);//ç”»çŸ©å½¢æ¡†
+       painter->drawRoundedRect(rect, 2, 2);//»­¾ØĞÎ¿ò
     }
-    //è¿”å›ç´¢å¼•å¼•ç”¨çš„é¡¹çš„ç»™å®šè§’è‰²çš„æ•°æ®
+    //·µ»ØË÷ÒıÒıÓÃµÄÏîµÄ¸ø¶¨½ÇÉ«µÄÊı¾İ
     int rowid = index.data(Qt::UserRole).toInt();
     if (rowid < 0){
-       // ç©ºæ¡ç›®
+       // ¿ÕÌõÄ¿
        qDebug() << "kong";
        painter->setBrush(Qt::NoBrush);
        painter->setPen(Qt::DotLine);
@@ -47,8 +47,8 @@ void MyDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, \
        }
        painter->drawText(dst, Qt::AlignLeft | Qt::AlignVCenter,"tt");
     }else{
-       // æœ‰æ„ä¹‰çš„æ¡ç›®
-       QString text = index.data(Qt::DisplayRole).toString();//è¿”å›è¦ä»¥æ–‡æœ¬æ˜¾ç¤ºçš„è§’è‰²å€¼
+       // ÓĞÒâÒåµÄÌõÄ¿
+       QString text = index.data(Qt::DisplayRole).toString();//·µ»ØÒªÒÔÎÄ±¾ÏÔÊ¾µÄ½ÇÉ«Öµ
        QRect dst = rect;
        if (selected)
            painter->setPen(QColor(101, 199,147));
@@ -65,7 +65,7 @@ QWidget* MyDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &o
 //    QRegExp regExp( "[0-9]{0,10}" );
 //    editor->setValidator( new  QRegExpValidator(regExp, parent));
 //    int row = index.row(),col = index.column();
-//    QModelIndex temp = index.model()->index(row,--col);//æ ¹æ®rowè¡Œcolè·å–æŒ‡å®šé¡¹çš„ç´¢å¼•
+//    QModelIndex temp = index.model()->index(row,--col);//¸ù¾İrowĞĞcol»ñÈ¡Ö¸¶¨ÏîµÄË÷Òı
 //    QString text = temp.data().toString();
 //    qDebug() << text;
     QComboBox *editor =  new  QComboBox(parent);
