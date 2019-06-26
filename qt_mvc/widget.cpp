@@ -71,7 +71,7 @@ void Widget::on_pushButton_clicked()
 {
     QItemSelectionModel* selection = ui->tableView->selectionModel();
 
-    //返回的是每一个item，不是行
+    //返回的是每一个item，不是行，可以添加index.coloumn == 0之类来筛选
 //    QModelIndexList selected = selection->selectedIndexes();
 //    for(int i = 0;i < selected.size();++i){
 //        mymode->insertRows(selected[i].row(),1);
@@ -104,4 +104,39 @@ void Widget::on_tableView_clicked(const QModelIndex &index)
                                     //猜测是view设置原有的model，不会触发改变的信号，所以不会刷新
     mymode2->initData(&(mainData.data[index.row()]));
     ui->tableView2->setModel(mymode2);
+}
+
+void Widget::on_insert2l_clicked()
+{
+     QItemSelectionModel* selection = ui->tableView->selectionModel();
+     QModelIndex selected = selection->currentIndex();
+     mymode2->initData(&(mainData.data[selected.row()]));
+     qDebug() << "1 row:" << selected.row();
+
+     selection = ui->tableView2->selectionModel();
+     selected = selection->currentIndex();
+     if(selected.row() < 0){
+         mymode2->insertRows(0,1);
+     }else{
+         mymode2->insertRows(selected.row(),1);
+     }
+     qDebug() << "2 row:" << selected.row();
+     mainData.eachData();
+
+}
+
+void Widget::on_del2_clicked()
+{
+    QItemSelectionModel* selection = ui->tableView2->selectionModel();
+    QModelIndex selected = selection->currentIndex();
+    QString temp = QString("确定要删除第%1行？").arg(selected.row() + 1);
+    int ret = QMessageBox::question(this,"提示",temp,\
+                                    QMessageBox::Yes,QMessageBox::No);
+    if(ret == QMessageBox::No){
+        return;
+    }
+
+    mymode2->removeRows(selected.row(),1);
+    mainData.eachData();
+
 }

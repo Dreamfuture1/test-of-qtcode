@@ -25,6 +25,10 @@ private slots:
 
     void on_tableView_clicked(const QModelIndex &index);
 
+    void on_insert2l_clicked();
+
+    void on_del2_clicked();
+
 private:
     Ui::Widget *ui;
 

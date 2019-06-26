@@ -83,11 +83,7 @@ bool MyModelSub::setData(const QModelIndex &index, \
 bool MyModelSub::insertRows(int row, int count, const QModelIndex &parent){
     Q_UNUSED(parent);
     beginInsertRows(QModelIndex(),row,row + count - 1);//row是要插入的第一行的行号，count是最后一行的行号
-//    for(int i = 0;i < count;++i){
-//        QVector<QString> temp;
-//        temp.resize(3);
-//        dataSave.insert(row,temp);
-//    }
+
     DataSub temp;
     dataSave->subdata.insert(row,count,temp);
     endInsertRows();
