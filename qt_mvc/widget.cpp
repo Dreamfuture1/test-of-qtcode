@@ -86,6 +86,7 @@ void Widget::on_pushButton_2_clicked()
 {
     QItemSelectionModel* selection = ui->tableView->selectionModel();
     QModelIndex selected = selection->currentIndex();
+    qDebug() << "3 row:" << selected.row();
     QString temp = QString("确定要删除第%1行？").arg(selected.row() + 1);
     int ret = QMessageBox::question(this,"提示",temp,\
                                     QMessageBox::Yes,QMessageBox::No);
@@ -94,12 +95,13 @@ void Widget::on_pushButton_2_clicked()
     }
 
     mymode->removeRows(selected.row(),1);
-    mainData.eachData();
+    //mainData.eachData();
 
 }
 
 void Widget::on_tableView_clicked(const QModelIndex &index)
 {
+    qDebug() << "clicked";
     ui->tableView2->setModel(model);//必须用一个空的model去刷新一下view，否则只有在点击view的时候才会刷新
                                     //猜测是view设置原有的model，不会触发改变的信号，所以不会刷新
     mymode2->initData(&(mainData.data[index.row()]));
@@ -114,6 +116,11 @@ void Widget::on_insert2l_clicked()
      qDebug() << "1 row:" << selected.row();
 
      selection = ui->tableView2->selectionModel();
+     if(selection == NULL){
+         QMessageBox::warning(this,"提示","请先选择遥信表行",\
+                                             QMessageBox::Ok);
+         return;
+     }
      selected = selection->currentIndex();
      if(selected.row() < 0){
          mymode2->insertRows(0,1);
@@ -128,15 +135,29 @@ void Widget::on_insert2l_clicked()
 void Widget::on_del2_clicked()
 {
     QItemSelectionModel* selection = ui->tableView2->selectionModel();
+    if(selection == NULL){
+        QMessageBox::warning(this,"提示","删除无效！",\
+                                            QMessageBox::Ok);
+        return;
+    }
     QModelIndex selected = selection->currentIndex();
-    QString temp = QString("确定要删除第%1行？").arg(selected.row() + 1);
+    QString temp;
+    int row = -1;
+    if(selected.row() < 0){
+        temp = QString("确定要删除第%1行？").arg(1);
+        row = 0;
+    }else{
+        temp = QString("确定要删除第%1行？").arg(selected.row() + 1);
+        row = selected.row();
+    }
+
     int ret = QMessageBox::question(this,"提示",temp,\
                                     QMessageBox::Yes,QMessageBox::No);
     if(ret == QMessageBox::No){
         return;
     }
 
-    mymode2->removeRows(selected.row(),1);
+    mymode2->removeRows(row,1);
     mainData.eachData();
 
 }

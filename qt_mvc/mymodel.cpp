@@ -13,7 +13,8 @@ int TableModel::columnCount(const QModelIndex &) const{
 QVariant TableModel::data(const QModelIndex &, int ) const{return QVariant();}
 
 Qt::ItemFlags TableModel::flags(const QModelIndex &) const{return 0;}
-bool TableModel::setData(const QModelIndex &, const QVariant &, int ){return false;}
+bool TableModel::setData(const QModelIndex &, \
+                         const QVariant &, int ){return false;}
 
 MyModel::MyModel(QObject *parent) : QAbstractTableModel(parent)
 {
