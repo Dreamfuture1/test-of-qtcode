@@ -129,7 +129,6 @@ void Widget::on_insert2l_clicked()
      }
      qDebug() << "2 row:" << selected.row();
      mainData.eachData();
-
 }
 
 void Widget::on_del2_clicked()
@@ -159,5 +158,11 @@ void Widget::on_del2_clicked()
 
     mymode2->removeRows(row,1);
     mainData.eachData();
+}
 
+void Widget::on_pushButton_3_clicked()
+{
+    QModelIndex index = mymode->index(0,0);
+    QString temp = "hello";
+    mymode->setData(index,QVariant::fromValue(temp),Qt::EditRole);
 }
